@@ -17,7 +17,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/Ryu0118/EditValueView.git", branch: "feature/any-json-editor")
+        .package(url: "https://github.com/p_x9/EditValueView.git", branch: "main")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
