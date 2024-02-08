@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "editvalueview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Ryu0118/EditValueView.git",
+      "state" : {
+        "branch" : "feature/any-json-editor",
+        "revision" : "4805b71eb9507a2c0dc68948ab7e708b6d364ca4"
+      }
+    },
+    {
+      "identity" : "swiftuicolor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/p-x9/SwiftUIColor.git",
+      "state" : {
+        "revision" : "aa42f452698cc0f78dcba2c6544f4abf7724602f",
+        "version" : "0.4.0"
+      }
+    }
+  ],
+  "version" : 2
+}
