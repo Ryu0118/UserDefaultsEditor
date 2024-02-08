@@ -1,10 +1,12 @@
 import EditValueView
 import SwiftUI
 
+/// `UserDefaultsEditor` provides a SwiftUI view for modifying UserDefaults values. It leverages EditValueView for the individual value modification views, offering a user-friendly interface for debugging and editing UserDefaults entries directly within your app. This view supports both push and modal presentation styles.
 public struct UserDefaultsEditor: View {
+    /// Defines the presentation style of the UserDefaults editor view.
     public enum PresentationStyle {
-        case push
-        case modal
+        case push   // Presents the editor in a push navigation style.
+        case modal  // Presents the editor modally.
     }
 
     @State var presentedValue: UserDefaultsRepresentation?
@@ -15,6 +17,10 @@ public struct UserDefaultsEditor: View {
     let write: (_ key: String, _ newValue: Any) -> Void
     let remove: (_ key: String) -> Void
 
+    /// Initializes a `UserDefaultsEditor` view with the specified presentation style and UserDefaults source.
+    /// - Parameters:
+    ///   - userDefaults: The UserDefaults instance to edit.
+    ///   - presentationStyle: The presentation style for the editor (default is `.push`).
     public init(
         userDefaults: UserDefaults,
         presentationStyle: PresentationStyle = .push
