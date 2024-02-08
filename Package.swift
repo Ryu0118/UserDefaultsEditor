@@ -17,7 +17,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/p_x9/EditValueView.git", branch: "main")
+        .package(url: "https://github.com/p-x9/EditValueView.git", branch: "main")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.

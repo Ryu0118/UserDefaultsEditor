@@ -3,10 +3,10 @@
     {
       "identity" : "editvalueview",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Ryu0118/EditValueView.git",
+      "location" : "https://github.com/p-x9/EditValueView.git",
       "state" : {
-        "branch" : "feature/any-json-editor",
-        "revision" : "4805b71eb9507a2c0dc68948ab7e708b6d364ca4"
+        "branch" : "main",
+        "revision" : "fd08c38ff1d51e95b35a2c41601cc4404c9cfea9"
       }
     },
     {
