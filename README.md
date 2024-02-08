@@ -6,9 +6,11 @@ A SwiftUI View for Easily Modifying UserDefaults Values for Debugging.
 UserDefaultsEditor uses the [EditValueView](https://github.com/p-x9/EditValueView) for its value modification views. For more information about EditValueView, please visit their GitHub repository.
 
 # Usage
+For displaying the view with a push transition, please set presentationStyle to .push. For modal presentation, select .modal.
+
 ```Swift
 UserDefaultsEditor(
     userDefaults: .standard,
-    presentationStyle: .push
+    presentationStyle: .push // or .modal
 )
 ```
