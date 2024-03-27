@@ -27,7 +27,6 @@ let package = Package(
             dependencies: [
                 .product(name: "EditValueView", package: "EditValueView")
             ],
-            path: "Sources",
             resources: [.copy("PrivacyInfo.xcprivacy")]
         ),
         .testTarget(
