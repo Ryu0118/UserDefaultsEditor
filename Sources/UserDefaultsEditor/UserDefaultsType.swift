@@ -16,38 +16,41 @@ enum UserDefaultsType {
     case date(Date)
     case object(Any)
 
-    var associatedValue: Any {
+    var description: String {
         switch self {
         case .string(let string):
-            string
+            string.description
         case .array(let array):
-            array
+            array.description
         case .dictionary(let dictionary):
-            dictionary
+            dictionary.description
         case .data(let data):
-            if let json = try? JSONSerialization.jsonObject(with: data, options: []) {
-                json
+            if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+               let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted, .sortedKeys]),
+               let jsonString = String(data: jsonData, encoding: .utf8)
+            {
+                jsonString
             } else if let string = String(data: data, encoding: .utf8) {
                 string
             } else {
-                data
+                data.description
             }
         case .stringArray(let array):
-            array
+            array.description
         case .integer(let int):
-            int
+            int.description
         case .float(let float):
-            float
+            float.description
         case .double(let double):
-            double
+            double.description
         case .bool(let bool):
-            bool
+            bool.description
         case .url(let url):
-            url
+            url.description
         case .date(let date):
-            date
+            date.description
         case .object(let any):
-            any
+            String(reflecting: any)
         }
     }
 

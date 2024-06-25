@@ -64,7 +64,7 @@ public struct UserDefaultsEditor: View {
                 HStack {
                     Text(data.key)
                     Spacer()
-                    Text(String(reflecting: data.type.associatedValue))
+                    Text(data.type.description)
                         .foregroundColor(.blue)
                 }
                 .contentShape(Rectangle())
@@ -104,7 +104,7 @@ public struct UserDefaultsEditor: View {
                         update()
                     }
             case .data(let data):
-                if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                if let json = try? JSONSerialization.jsonObject(with: data) {
                     EditValueView(key: value.key, value: json)
                         .onUpdate { newValue in
                             guard let data = try? JSONSerialization.data(withJSONObject: newValue) else {
@@ -200,7 +200,7 @@ extension [String: Any] {
             "string": "hoge",
             "array": [1, "2", 3],
             "dictionary": ["a": 0],
-            "data": "{ \"string\": \"string\", \"integer\": 1 }".data(using: .utf8)!,
+            "data": "[{ \"string\": \"string\", \"integer\": 1 }]".data(using: .utf8)!,
             "stringArray": ["a", "b"],
             "integer": 1,
             "float": Float(1),
