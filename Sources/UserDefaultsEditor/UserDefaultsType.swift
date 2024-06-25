@@ -25,7 +25,13 @@ enum UserDefaultsType {
         case .dictionary(let dictionary):
             dictionary
         case .data(let data):
-            data
+            if let json = try? JSONSerialization.jsonObject(with: data, options: []) {
+                json
+            } else if let string = String(data: data, encoding: .utf8) {
+                string
+            } else {
+                data
+            }
         case .stringArray(let array):
             array
         case .integer(let int):

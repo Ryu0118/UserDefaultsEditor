@@ -104,11 +104,23 @@ public struct UserDefaultsEditor: View {
                         update()
                     }
             case .data(let data):
-                EditValueView(key: value.key, value: data)
-                    .onUpdate { newValue in
-                        write(value.key, newValue)
-                        update()
-                    }
+                if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    EditValueView(key: value.key, value: json)
+                        .onUpdate { newValue in
+                            guard let data = try? JSONSerialization.data(withJSONObject: newValue) else {
+                                return
+                            }
+                            
+                            write(value.key, data)
+                        }
+                } else {
+                    EditValueView(key: value.key, value: data)
+                        .onUpdate { newValue in
+                            write(value.key, newValue)
+                            update()
+                        }
+                }
+
             case .stringArray(let array):
                 EditValueView(key: value.key, value: array)
                     .onUpdate { newValue in
@@ -188,7 +200,7 @@ extension [String: Any] {
             "string": "hoge",
             "array": [1, "2", 3],
             "dictionary": ["a": 0],
-            "data": "data".data(using: .utf8)!,
+            "data": "{ \"string\": \"string\", \"integer\": 1 }".data(using: .utf8)!,
             "stringArray": ["a", "b"],
             "integer": 1,
             "float": Float(1),
