@@ -20,6 +20,9 @@ struct ContentView: View {
                     Button("Add String Value") {
                         UserDefaults.standard.set("string", forKey: "stringKey")
                     }
+                    Button("Add Data Value") {
+                        UserDefaults.standard.set("{ \"string\": \"string\", \"integer\": 1 }".data(using: .utf8), forKey: "dataKey")
+                    }
                 }
             }
         }
