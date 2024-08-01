@@ -11,7 +11,18 @@ public struct UserDefaultsEditor: View {
 
     @State var presentedValue: UserDefaultsRepresentation?
     @State var allValues: [UserDefaultsRepresentation]
-    
+    @State var searchQuery: String = ""
+
+    var filteredValues: [UserDefaultsRepresentation] {
+        if searchQuery.isEmpty {
+            allValues
+        } else {
+            allValues.filter {
+                $0.key.lowercased().range(of: searchQuery.lowercased()) != nil
+            }
+        }
+    }
+
     let presentationStyle: PresentationStyle
     let dataSource: () -> [String: Any]
     let write: (_ key: String, _ newValue: Any) -> Void
@@ -60,7 +71,7 @@ public struct UserDefaultsEditor: View {
 
     private var core: some View {
         List {
-            ForEach(allValues) { data in
+            ForEach(filteredValues) { data in
                 HStack {
                     Text(data.key)
                     Spacer()
@@ -171,6 +182,7 @@ public struct UserDefaultsEditor: View {
                     }
             }
         }
+        .searchable(text: $searchQuery)
     }
 
     func update() {
