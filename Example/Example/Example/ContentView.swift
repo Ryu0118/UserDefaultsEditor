@@ -5,10 +5,30 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                Section {
+                Section("Basic Usage") {
                     NavigationLink("UserDefaultsEditor") {
                         UserDefaultsEditor(
                             userDefaults: .standard,
+                            presentationStyle: .push
+                        )
+                    }
+                }
+                Section("With Key Filter") {
+                    NavigationLink("Custom Keys Only") {
+                        UserDefaultsEditor(
+                            userDefaults: .standard,
+                            keyFilter: { key in 
+                                key.contains("Key") || key.hasPrefix("app")
+                            },
+                            presentationStyle: .push
+                        )
+                    }
+                    NavigationLink("System Keys Only") {
+                        UserDefaultsEditor(
+                            userDefaults: .standard,
+                            keyFilter: { key in 
+                                key.hasPrefix("NS") || key.hasPrefix("Apple") || key.hasPrefix("com.apple")
+                            },
                             presentationStyle: .push
                         )
                     }
