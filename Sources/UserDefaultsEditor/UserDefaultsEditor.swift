@@ -38,6 +38,7 @@ public struct UserDefaultsEditor: View {
     /// Initializes a `UserDefaultsEditor` view with the specified presentation style and UserDefaults source.
     /// - Parameters:
     ///   - userDefaults: The UserDefaults instance to edit.
+    ///   - keyFilter: An optional closure to filter which keys are displayed. If provided, only keys for which this closure returns `true` will be shown.
     ///   - presentationStyle: The presentation style for the editor (default is `.push`).
     public init(
         userDefaults: UserDefaults,
