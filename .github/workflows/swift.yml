@@ -20,23 +20,22 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -s /Applications/Xcode.app
     
-    - name: Generate Xcode project
-      run: swift package generate-xcodeproj
-    
     - name: Build with xcodebuild
       run: |
         xcodebuild build \
-          -project UserDefaultsEditor.xcodeproj \
-          -scheme UserDefaultsEditor-Package \
+          -scheme UserDefaultsEditor \
           -destination 'platform=macOS' \
+          -skipPackagePluginValidation \
+          -skipMacroValidation \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO
     
     - name: Test with xcodebuild
       run: |
         xcodebuild test \
-          -project UserDefaultsEditor.xcodeproj \
-          -scheme UserDefaultsEditor-Package \
+          -scheme UserDefaultsEditor \
           -destination 'platform=macOS' \
+          -skipPackagePluginValidation \
+          -skipMacroValidation \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO
