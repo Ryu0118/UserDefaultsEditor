@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/p-x9/EditValueView.git",
       "state" : {
-        "revision" : "bb2ce6255b282542031f41ddaf597b37fb15b19c",
-        "version" : "0.6.0"
+        "revision" : "454d77987aea7a3673dc2b7ce8ab15efa154987f",
+        "version" : "0.7.0"
       }
     },
     {
@@ -19,12 +19,21 @@
       }
     },
     {
+      "identity" : "swiftui-reflection-view",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/p-x9/swiftui-reflection-view.git",
+      "state" : {
+        "revision" : "3e63a8ac58bc705e02012a97343450afc7060178",
+        "version" : "0.11.0"
+      }
+    },
+    {
       "identity" : "swiftuicolor",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/p-x9/SwiftUIColor.git",
       "state" : {
-        "revision" : "aa42f452698cc0f78dcba2c6544f4abf7724602f",
-        "version" : "0.4.0"
+        "revision" : "cfea559bcbd681899a8b815e8e84eaadd8be8c2e",
+        "version" : "0.6.0"
       }
     }
   ],
