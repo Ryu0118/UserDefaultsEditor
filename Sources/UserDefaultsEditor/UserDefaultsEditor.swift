@@ -14,12 +14,18 @@ public struct UserDefaultsEditor: View {
     @State var searchQuery: String = ""
 
     var filteredValues: [UserDefaultsRepresentation] {
-        if searchQuery.isEmpty {
+        let temp = if searchQuery.isEmpty {
             allValues
         } else {
             allValues.filter {
                 $0.key.lowercased().range(of: searchQuery.lowercased()) != nil
             }
+        }
+
+        if let keyFilter {
+            return temp.filter { keyFilter($0.key) }
+        } else {
+            return temp
         }
     }
 
@@ -27,17 +33,21 @@ public struct UserDefaultsEditor: View {
     let dataSource: () -> [String: Any]
     let write: (_ key: String, _ newValue: Any) -> Void
     let remove: (_ key: String) -> Void
+    let keyFilter: ((String) -> Bool)?
 
     /// Initializes a `UserDefaultsEditor` view with the specified presentation style and UserDefaults source.
     /// - Parameters:
     ///   - userDefaults: The UserDefaults instance to edit.
+    ///   - keyFilter: An optional closure to filter which keys are displayed. If provided, only keys for which this closure returns `true` will be shown.
     ///   - presentationStyle: The presentation style for the editor (default is `.push`).
     public init(
         userDefaults: UserDefaults,
+        keyFilter: ((String) -> Bool)? = nil,
         presentationStyle: PresentationStyle = .push
     ) {
         self.init(
             presentationStyle: presentationStyle,
+            keyFilter: keyFilter,
             dictionary: userDefaults.dictionaryRepresentation(),
             write: { userDefaults.set($1, forKey: $0) },
             remove: { userDefaults.removeObject(forKey: $0) }
@@ -46,6 +56,7 @@ public struct UserDefaultsEditor: View {
 
     fileprivate init(
         presentationStyle: PresentationStyle,
+        keyFilter: ((String) -> Bool)? = nil,
         dictionary: @escaping @autoclosure () -> [String: Any],
         write: @escaping (_ key: String, _ newValue: Any) -> Void,
         remove: @escaping (_ key: String) -> Void
@@ -54,6 +65,7 @@ public struct UserDefaultsEditor: View {
         self._allValues = .init(initialValue: allValues)
         self.write = write
         self.presentationStyle = presentationStyle
+        self.keyFilter = keyFilter
         self.remove = remove
         self.dataSource = dictionary
     }

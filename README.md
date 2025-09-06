@@ -16,3 +16,26 @@ UserDefaultsEditor(
     presentationStyle: .push // or .modal
 )
 ```
+
+## Key Filtering
+You can filter which keys are displayed using the `keyFilter` parameter. This is useful for debugging specific parts of your app or hiding sensitive data.
+
+```Swift
+// Only show keys that start with "app"
+UserDefaultsEditor(
+    userDefaults: .standard,
+    keyFilter: { key in key.hasPrefix("app") },
+    presentationStyle: .push
+)
+
+// Hide system keys and only show custom keys
+UserDefaultsEditor(
+    userDefaults: .standard,
+    keyFilter: { key in 
+        !key.hasPrefix("NS") && 
+        !key.hasPrefix("Apple") && 
+        !key.hasPrefix("com.apple")
+    },
+    presentationStyle: .modal
+)
+```
